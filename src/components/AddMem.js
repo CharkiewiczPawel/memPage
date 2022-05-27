@@ -6,31 +6,33 @@ const AddMem = (props) => {
 
   const handleOnChangeinTitle = (e) => setTitle(e.target.value);
   const handleOnChangeLink = (e) => setLink(e.target.value);
+
   
-  const newObject = {
-    id: props.memsLenght,
-    title: { title },
-    upwotes: 0,
-    downvotes: 0,
-    img: { link },
-    goldStar: false,
-  };
+  const newObject={
+    title:{title},
+    link:{link}
+  }
+  
 
   return (
-    <div className="crateCurrentMem">
+    <div className="memeBoard">
+    <div className="createCurrentMem">
+      
       <h1>Dodaj mem</h1>
-      <label>
+      <label className="labelForMeme">
         Tytuł
         <input value={title} onChange={handleOnChangeinTitle} type="text" />
       </label>
-      <label>
+      <label className="labelForMeme">
         Link do mema
         <input type="text" value={link} onChange={handleOnChangeLink} />
       </label>
       <p>{title}</p>
       <p>{link}</p>
 
-      <button onClick={console.log(newObject)}>Dodaj</button>
+      <button onClick={()=>props.pushIntoArrayMemes(newObject)}>Dodaj</button>
+    
+    </div>
     </div>
   );
 };

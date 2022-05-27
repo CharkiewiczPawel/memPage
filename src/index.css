@@ -4,6 +4,8 @@
 
 body {
   margin: 0;
+  padding: 0;
+  display: flex;
   background-image: url("./otherPictures/vanGoghBackground.jpg");
   background-repeat: repeat;
   background-position: top center;
@@ -13,12 +15,12 @@ body {
 }
 
 nav{
-  width: 100vw;
+  width: 100%;
   height: 60px;
   background-color: black;
   display: flex;
   position: fixed;
-  margin-top: -4%;
+  /* margin-top: -4%; */
   z-index: 2;  
 }
 .fatBoyLogo{
@@ -27,21 +29,28 @@ nav{
 }
 .logoTitle{
   font-family: 'Pacifico', cursive;
-  color: gold;
+  color:gold;
   margin: auto 10px;
   font-size: 25px;
 }
-.selectFirst{
-  margin-left: 25%;
+
+.linktToMemes{  
+  margin: auto 15px; 
+  border-bottom: 5px solid black;
+  font-size: xx-large;    
 }
-.select{
-  background-color: #1B5E20;
-  border-radius: 15px;
-  width: 10vw;
-  height: 8vh;
-  margin-top: auto;
-  margin-bottom: auto;
-  cursor: pointer;
+
+.firstLinkToMemes{
+  margin-left: 35%;
+}
+
+.active{
+ border-bottom:2px solid gold;
+}
+.paragraphBottom{
+  border-bottom: 5px solid black;
+  font-size: xx-large;  
+  margin: auto;
 }
 
 .placeforMem{
@@ -49,7 +58,7 @@ nav{
   flex-direction: column;
   margin: 4% auto;
   background-color: rgba(0, 0, 0, 0.226);
-  width: 60vw;
+  width: 100vw;
 }
 .specyficMem{
   margin: 0 auto;
@@ -65,7 +74,7 @@ nav{
   margin: 0;
 }
 .goldStar{
-  max-width: 2vw;
+  max-width: 1.3vw;
   background-color: grey;
   border-radius: 50%;
   position: absolute;
@@ -132,12 +141,137 @@ border: none;
 .select:focus{
   background-color: #FF1744;
 }
-.crateCurrentMem{
+.memeBoard{
+  width: 100vw;
+  height: 72vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+.createCurrentMem{
   height: 50vh;
   width: 50vw;
+  display: flex;
+  flex-direction: column;
   background-color: #424242;
   justify-content: center;
-  margin: 4% auto;
   border: 5px solid #212121;
   border-radius: 15px;
 }
+h1{
+  text-align: center;
+}
+.labelForMeme{
+  text-align: center;
+  margin-top: 2%;
+}
+input{
+  text-align: center;
+  margin-left: 1%;
+  border:none;
+  background-color:#424242;
+  border-bottom: 2px solid gold;
+  color:#E3F2FD;
+}
+input:focus{
+  outline: none;
+}
+button{
+  background-color:#424242; 
+  border: none;
+  width: auto;
+  font-size: xx-large;
+  color:#E3F2FD ;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+  .logoTitle{
+    font-size: small;
+  }
+  .firstLinkToMemes{
+    margin-left: 2%;
+  }
+  .linktToMemes{
+    font-size: medium;
+  }
+  .placeforMem{
+    margin-top: 15%;
+  }
+  .goldStar{
+    max-width: 3vw;
+  }
+  .like img{
+    height: 50%;
+  }
+  .dislike img{
+    height: 50%;
+  }
+  h1{
+    font-size: medium;
+  }
+  .labelForMeme{
+    font-size: small;
+    margin-bottom: 2%;
+  }
+
+ 
+
+}
+@media only screen and (min-width: 481px) and  (min-width: 768px){
+  .logoTitle{
+    font-size: small;
+  }
+  .firstLinkToMemes{
+    margin-left: 15%;
+  }
+  .placeforMem{
+    margin-top: 15%;
+  }
+  .goldStar{
+    max-width: 3vw;
+  }
+  .like img{
+    height: 50%;
+  }
+  .dislike img{
+    height: 50%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+  .placeforMem{
+    margin-top: 10%;
+  }
+  .logoTitle{
+    font-size: large;
+  }
+  .like img{
+    height: 65%;
+  }
+  .dislike img{
+    height: 65%;
+  }
+}
+@media only screen and (min-width: 1025px){
+  .logoTitle{
+    font-size: xx-large;
+  }
+  .placeforMem{
+    margin-top: 5%;
+  }
+  .firstLinkToMemes{
+    margin-left: 35%;
+  }
+  .goldStar{
+    max-width:1.2vw;
+  }
+  .like img{
+    height: 80%;
+  }
+  .dislike img{
+    height: 80%;
+  }
+}
+
+

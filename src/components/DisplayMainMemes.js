@@ -1,7 +1,7 @@
 import logo from "../otherPictures/logo.jpg";
 
-const Mem = (props) => (
-  <>
+const DisplayMainMemes=(props)=>(
+    <>
     <main className="placeforMem">
       <div className="specyficMem">
         <h1>
@@ -30,6 +30,5 @@ const Mem = (props) => (
       </div>
     </main>
   </>
-);
-
-export default Mem;
+  )
+  export default DisplayMainMemes

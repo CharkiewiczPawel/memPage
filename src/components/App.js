@@ -1,15 +1,14 @@
 import React from "react";
 import "./App.css";
-import Navbar from "./Navbar";
-import ListItems from "./ListItems";
-import Footer from "./Footer";
+import { BrowserRouter, Routes, NavLink, Route } from "react-router-dom";
+import MainMemes from "./MainMemes";
+import WaitingMemes from "./WaitingMemes";
+import AddMem from "./AddMem";
+import logo from "../otherPictures/logo.jpg";
 
 class App extends React.Component {
   state = {
-    filterMem: true,
-    dispalyMem:true,
-
-    mems: [
+    memes: [
       {
         id: 1,
         title: "Backup",
@@ -102,89 +101,125 @@ class App extends React.Component {
   };
 
   handleChangeUpvotes = (id) => {
-    const mems = this.state.mems.map((mem) => {
+    const memes = this.state.memes.map((mem) => {
       if (id === mem.id) {
         mem.upvotes = mem.upvotes + 1;
       }
       return mem;
     });
     this.setState({
-      mems,
+      memes,
     });
   };
   handleChangeDownvotes = (id) => {
-    const mems = this.state.mems.map((mem) => {
+    const memes = this.state.memes.map((mem) => {
       if (id === mem.id) {
         mem.downvotes = mem.downvotes + 1;
       }
       return mem;
     });
     this.setState({
-      mems,
+      memes,
     });
-  };
-
-  handleFilterMemReturnFalse = () => {
-    this.setState({ filterMem: false,
-      dispalyMem:true
-    });
-  };
-  handleFilterMemReturnTrue = () => {
-    this.setState({ filterMem: true,
-    dispalyMem:true
-    });
-    
   };
 
   handleGoldStar = (id) => {
-    console.log(`Handle Gold Star działa ${this.state.mems}`);
-    const mems = this.state.mems.map((mem) => {
+    const memesz = this.state.memes.map((mem) =>
+      console.log(`ID:${mem.id} title:${mem.title} img:${mem.img} `)
+    );
+
+    const memes = this.state.memes.map((mem) => {
       if (id === mem.id) {
         mem.goldStar = !mem.goldStar;
       }
       return mem;
     });
     this.setState({
-      mems,
+      memes,
     });
   };
-  handleDisplayMemReturnFalse=(dispalyMem)=>{
-     let reverse=!dispalyMem
+
+  pushIntoArrayMemes = (memes, newObject) => {
+    const memesLenght = this.state.memes.length;
     this.setState({
-      dispalyMem:reverse
-    })
-  }
-pushIntoArrayMems=(mems,newPicture)=>{
-  this.setState({mems:[...this.state.mems,newPicture]})
-}
+      memes: [
+        ...this.state.memes,
+        { id: memesLenght, upvotes: 0, downvotes: 0, goldStar: 0, newObject },
+      ],
+    });
+  };
 
   render() {
     return (
-      <>
-        <Navbar
-          filterMemReturnTrue={this.handleFilterMemReturnTrue}
-          filterMemReturnFalse={this.handleFilterMemReturnFalse}
+      <BrowserRouter>
+        <>
+          <nav>
+            <img src={logo} alt="logo" className="fatBoyLogo" />
+            <div className="logoTitle">Moje Memy</div>
+            <p className="linktToMemes firstLinkToMemes">
+              <NavLink
+                style={{ textDecoration: "none", color: "#2196F3" }}
+                to="/"
+              >
+                Główna
+              </NavLink>
+            </p>
+            <p className="linktToMemes secondLinkToMemes ">
+              <NavLink
+                style={{ textDecoration: "none", color: "#2196F3" }}
+                to="/poczekalnia"
+              >
+                poczekalnia
+              </NavLink>
+            </p>
+          </nav>
 
-        />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MainMemes
+                  memes={this.state.memes}
+                  likeIt={this.handleChangeUpvotes}
+                  noLikeIt={this.handleChangeDownvotes}
+                  chocieInListItems={this.chocie}
+                  goldStarFunction={this.handleGoldStar}
+                />
+              }
+            />
 
-        <ListItems
-          mems={this.state.mems}
-          filterMem={this.state.filterMem}
-          dispalyMem={this.state.dispalyMem}
-          likeIt={this.handleChangeUpvotes}
-          noLikeIt={this.handleChangeDownvotes}
-          chocieInListItems={this.chocie}
-          goldStarFunction={this.handleGoldStar}
-        />
-        <Footer
-         dispalyMem={this.state.dispalyMem}
-         dispalyMemReturnFalse={this.handleDisplayMemReturnFalse}
-         mems={this.state.mems}
-         memsLenght={this.state.mems.length}
-         pushIntoArrayMems={this.pushIntoArrayMems}
-         
-        />
-      </>
+            <Route
+              path="/poczekalnia"
+              element={
+                <WaitingMemes
+                  memes={this.state.memes}
+                  likeIt={this.handleChangeUpvotes}
+                  noLikeIt={this.handleChangeDownvotes}
+                  chocieInListItems={this.chocie}
+                  goldStarFunction={this.handleGoldStar}
+                />
+              }
+            />
+            <Route
+              path="/dodaj"
+              element={<AddMem pushIntoArrayMemes={this.pushIntoArrayMemes} />}
+            />
+          </Routes>
+
+          <footer>
+            <div className="bottom">
+              <p className="paragraphBottom">
+                <NavLink
+                  style={{ textDecoration: "none", color: "#2196F3" }}
+                  to="/dodaj"
+                >
+                  Dodaj mem
+                </NavLink>
+              </p>
+            </div>
+          </footer>
+        </>
+      </BrowserRouter>
     );
   }
 }
