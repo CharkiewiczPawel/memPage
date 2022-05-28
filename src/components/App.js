@@ -139,12 +139,19 @@ class App extends React.Component {
     });
   };
 
-  pushIntoArrayMemes = (memes, newObject) => {
+  pushIntoArrayMemes = (title, img) => {
     const memesLenght = this.state.memes.length;
     this.setState({
       memes: [
         ...this.state.memes,
-        { id: memesLenght, upvotes: 0, downvotes: 0, goldStar: 0, newObject },
+        {
+          id: memesLenght,
+          upvotes: 0,
+          downvotes: 0,
+          goldStar: 0,
+          title: title,
+          img: img,
+        },
       ],
     });
   };
