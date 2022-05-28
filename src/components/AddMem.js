@@ -7,10 +7,7 @@ const AddMem = (props) => {
   const handleOnChangeinTitle = (e) => setTitle(e.target.value);
   const handleOnChangeLink = (e) => setLink(e.target.value);
 
-  const newObject = {
-    title: { title },
-    link: { link },
-  };
+
 
   return (
     <div className="memeBoard">
