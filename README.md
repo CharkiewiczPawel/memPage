@@ -4,7 +4,7 @@
 <table>
 <tr>
 <td>
-It is one from final projects fot postgraduate studies from the front-end. Project is for a meme page. You can view two tabs with memes and add new memes 
+It is one from final projects fot postgraduate studies from the front-end. Project is for a meme page. You can view two tabs with memes and add new memes. Memes can be liked and disliked. 
 </td>
 </tr>
 </table>
